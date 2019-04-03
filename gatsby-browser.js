@@ -1,5 +1,6 @@
 import React from 'react'
 import { ApolloProvider } from 'react-apollo'
+import { ApolloProvider as ApolloHooksProvider } from 'react-apollo-hooks'
 import ApolloClient from 'apollo-boost'
 import getAuth, { appId } from './src/utils/authentication'
 
@@ -9,6 +10,8 @@ const client = new ApolloClient({
     operation.setContext({ headers: getAuth().authHeaders() })
 })
 
-export const wrapRootElement = ({ element }) => {
-  return <ApolloProvider client={client}>{element}</ApolloProvider>
-}
+export const wrapRootElement = ({ element }) => (
+  <ApolloProvider client={client}>
+    <ApolloHooksProvider client={client}>{element}</ApolloHooksProvider>
+  </ApolloProvider>
+)
