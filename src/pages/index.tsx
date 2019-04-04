@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import { graphql } from 'gatsby'
 import StartScreen from '../components/molecules/StartScreen'
 import Username from '../components/atoms/Username'
+import CheckForRepo from '../components/atoms/CheckForRepo'
 
 interface IAuth {
   login: (service: string) => void
@@ -27,6 +28,7 @@ const Index: React.FC<{ auth: IAuth }> = ({ auth }) => {
             Go to <Link to="/dashboard">Game</Link>
           </p>
           <Username />
+          <CheckForRepo />
         </div>
       ) : (
         <StartScreen login={login()} />
